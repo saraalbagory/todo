@@ -10,21 +10,20 @@ type StoreState = {
     // Category Actions
     addCategory: (category: Category) => void
     updateCategory: (id: string, name: string) => void
+    findCategory: (name: string) => string
     //TODO: fix delete category to also delete tasks in that category
     deleteCategory: (id: string) => void
 
 
 }
-
+//TODO: check if the category exist before adding it
 
 export const useStore = create<StoreState>()(
     persist(
-        (set) => ({
+        (set, get) => ({
 
             categories: [
-                { id: '1', name: 'Personal' },
-                { id: '2', name: 'Work' },
-                { id: '3', name: 'Urgent' }
+               
             ],
 
             addCategory: (category) => set((state) => ({
@@ -34,11 +33,18 @@ export const useStore = create<StoreState>()(
             updateCategory: (id, name) => set((state) => ({
                 categories: state.categories.map((c) => (c.id === id ? { ...c, name } : c))
             })),
+            findCategory: (name) => {
+                const state = get();
+                const lowerName = name.toLowerCase();
+
+                return state.categories.find((c: Category) => c.name.toLowerCase() === lowerName)?.id || "";
+            },
 
             deleteCategory: (id) => set((state) => {
 
-                const newCategories = state.categories.filter((c) => c.id !== id)
-
+    
+                const newCategories = state.categories.filter((c) => c.id !==  id);
+                //the logic of the casading delete will be here 
 
                 return {
                     categories: newCategories,
