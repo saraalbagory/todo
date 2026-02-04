@@ -1,18 +1,25 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 import type { Category } from '../types/category'
+import type { Task } from '../types/task'
 
 type StoreState = {
 
-    categories: Category[]
+    categories: Category[],
+    todos:Task[],
 
 
     // Category Actions
     addCategory: (category: Category) => void
     updateCategory: (id: string, name: string) => void
     findCategory: (name: string) => string
-    //TODO: fix delete category to also delete tasks in that category
     deleteCategory: (id: string) => void
+
+    // Task Actions
+     addTask: (task: Task) => void
+     updateTask: (id: string, updatedFields: Partial<Task>) => void
+     deleteTask: (id: string) => void
+     toggleTaskCompletion: (id: string) => void
 
 
 }
@@ -25,6 +32,7 @@ export const useStore = create<StoreState>()(
             categories: [
                
             ],
+            todos:[],
 
             addCategory: (category) => set((state) => ({
                 categories: [...state.categories, category]
@@ -44,13 +52,28 @@ export const useStore = create<StoreState>()(
 
     
                 const newCategories = state.categories.filter((c) => c.id !==  id);
-                //the logic of the casading delete will be here 
-
+                const newTodos = state.todos.filter((t) => t.categoryId !== id);
                 return {
                     categories: newCategories,
+                    todos:newTodos
 
                 }
             }),
+
+            addTask: (task) => set((state) => ({
+                todos: [...state.todos, task]
+            })),
+
+            updateTask: (id, updatedFields) => set((state) => ({
+                todos: state.todos.map((t) => (t.id === id ? { ...t, ...updatedFields } : t))
+            })),
+
+            deleteTask: (id) => set((state) => ({
+                todos: state.todos.filter((t) => t.id !== id)
+            })),
+            toggleTaskCompletion: (id) => set((state) => ({
+                todos: state.todos.map((t) => (t.id === id ? { ...t, completed: !t.completed } : t))
+            })),
 
         }),
         {

@@ -30,7 +30,7 @@ export default function CategoryForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
+    <form onSubmit={handleSubmit} className="space-y-4 m:auto max-w-md p-4 bg-gray-100 dark:bg-gray-700 rounded">
       <div>
         <label 
           htmlFor="category-name"
