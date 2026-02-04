@@ -1,9 +1,9 @@
 import { createFileRoute } from '@tanstack/react-router'
 
-export const Route = createFileRoute('/')({
+export const Route = createFileRoute('/categories/newCategory')({
   component: RouteComponent,
 })
 
 function RouteComponent() {
-  return <div>HOME</div>
+  return <div>create category form</div>
 }

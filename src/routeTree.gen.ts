@@ -9,38 +9,161 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SettingsRouteImport } from './routes/settings'
+import { Route as ProfileRouteImport } from './routes/profile'
+import { Route as AddTaskRouteImport } from './routes/addTask'
+import { Route as TodoIdRouteImport } from './routes/$todoId'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CategoriesIndexRouteImport } from './routes/categories/index'
+import { Route as CategoriesNewCategoryRouteImport } from './routes/categories/newCategory'
+import { Route as CategoriesCategoryIdRouteImport } from './routes/categories/$categoryId'
 
+const SettingsRoute = SettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProfileRoute = ProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AddTaskRoute = AddTaskRouteImport.update({
+  id: '/addTask',
+  path: '/addTask',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TodoIdRoute = TodoIdRouteImport.update({
+  id: '/$todoId',
+  path: '/$todoId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CategoriesIndexRoute = CategoriesIndexRouteImport.update({
+  id: '/categories/',
+  path: '/categories/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CategoriesNewCategoryRoute = CategoriesNewCategoryRouteImport.update({
+  id: '/categories/newCategory',
+  path: '/categories/newCategory',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CategoriesCategoryIdRoute = CategoriesCategoryIdRouteImport.update({
+  id: '/categories/$categoryId',
+  path: '/categories/$categoryId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/$todoId': typeof TodoIdRoute
+  '/addTask': typeof AddTaskRoute
+  '/profile': typeof ProfileRoute
+  '/settings': typeof SettingsRoute
+  '/categories/$categoryId': typeof CategoriesCategoryIdRoute
+  '/categories/newCategory': typeof CategoriesNewCategoryRoute
+  '/categories/': typeof CategoriesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/$todoId': typeof TodoIdRoute
+  '/addTask': typeof AddTaskRoute
+  '/profile': typeof ProfileRoute
+  '/settings': typeof SettingsRoute
+  '/categories/$categoryId': typeof CategoriesCategoryIdRoute
+  '/categories/newCategory': typeof CategoriesNewCategoryRoute
+  '/categories': typeof CategoriesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/$todoId': typeof TodoIdRoute
+  '/addTask': typeof AddTaskRoute
+  '/profile': typeof ProfileRoute
+  '/settings': typeof SettingsRoute
+  '/categories/$categoryId': typeof CategoriesCategoryIdRoute
+  '/categories/newCategory': typeof CategoriesNewCategoryRoute
+  '/categories/': typeof CategoriesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/$todoId'
+    | '/addTask'
+    | '/profile'
+    | '/settings'
+    | '/categories/$categoryId'
+    | '/categories/newCategory'
+    | '/categories/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/$todoId'
+    | '/addTask'
+    | '/profile'
+    | '/settings'
+    | '/categories/$categoryId'
+    | '/categories/newCategory'
+    | '/categories'
+  id:
+    | '__root__'
+    | '/'
+    | '/$todoId'
+    | '/addTask'
+    | '/profile'
+    | '/settings'
+    | '/categories/$categoryId'
+    | '/categories/newCategory'
+    | '/categories/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  TodoIdRoute: typeof TodoIdRoute
+  AddTaskRoute: typeof AddTaskRoute
+  ProfileRoute: typeof ProfileRoute
+  SettingsRoute: typeof SettingsRoute
+  CategoriesCategoryIdRoute: typeof CategoriesCategoryIdRoute
+  CategoriesNewCategoryRoute: typeof CategoriesNewCategoryRoute
+  CategoriesIndexRoute: typeof CategoriesIndexRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/settings': {
+      id: '/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/profile': {
+      id: '/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof ProfileRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/addTask': {
+      id: '/addTask'
+      path: '/addTask'
+      fullPath: '/addTask'
+      preLoaderRoute: typeof AddTaskRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/$todoId': {
+      id: '/$todoId'
+      path: '/$todoId'
+      fullPath: '/$todoId'
+      preLoaderRoute: typeof TodoIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,11 +171,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/categories/': {
+      id: '/categories/'
+      path: '/categories'
+      fullPath: '/categories/'
+      preLoaderRoute: typeof CategoriesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/categories/newCategory': {
+      id: '/categories/newCategory'
+      path: '/categories/newCategory'
+      fullPath: '/categories/newCategory'
+      preLoaderRoute: typeof CategoriesNewCategoryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/categories/$categoryId': {
+      id: '/categories/$categoryId'
+      path: '/categories/$categoryId'
+      fullPath: '/categories/$categoryId'
+      preLoaderRoute: typeof CategoriesCategoryIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  TodoIdRoute: TodoIdRoute,
+  AddTaskRoute: AddTaskRoute,
+  ProfileRoute: ProfileRoute,
+  SettingsRoute: SettingsRoute,
+  CategoriesCategoryIdRoute: CategoriesCategoryIdRoute,
+  CategoriesNewCategoryRoute: CategoriesNewCategoryRoute,
+  CategoriesIndexRoute: CategoriesIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
