@@ -32,24 +32,7 @@ function TaskDetailPage({id}: TodoDetailsPageProps) {
   return (
     <div className="max-w-2xl mx-auto p-6 space-y-6">
   
-      <div className="flex justify-between items-center">
       
-        
-        <div className="flex gap-3">
-            {/* DELETE ACTION */}
-            <button 
-                onClick={() => {
-                    if(confirm("Delete this task?")) {
-                        deleteTask(task.id)
-                        navigate({ to: '/' }) // Redirect home after delete
-                    }
-                }}
-                className="text-red-500 hover:bg-red-50 px-3 py-1 rounded"
-            >
-                Delete
-            </button>
-        </div>
-      </div>
 
       {/* MAIN CONTENT */}
       <div className="bg-white dark:bg-gray-800 p-6 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm">
@@ -85,6 +68,27 @@ function TaskDetailPage({id}: TodoDetailsPageProps) {
                     {task.description || <span className="italic text-gray-400">No description provided.</span>}
                 </div>
             </div>
+        </div>
+      </div>
+      <div className="flex justify-between items-center">
+      
+        
+        <div className="flex gap-3">
+            {/* DELETE ACTION */}
+            <button 
+                onClick={() => {
+                    if(confirm("Delete this task?")) {
+                        deleteTask(task.id)
+                        navigate({ to: '/' }) // Redirect home after delete
+                    }
+                }}
+                className="delete-button"
+            >
+                Delete
+            </button>
+            <button className="text-white bg-blue-600 hover:bg-blue-400 px-3 py-1 rounded">
+              Edit
+            </button>
         </div>
       </div>
     </div>

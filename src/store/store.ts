@@ -15,6 +15,7 @@ type StoreState = {
     findCategory: (name: string) => string
     deleteCategory: (id: string) => void
 
+
     // Task Actions
      addTask: (task: Task) => void
      updateTask: (id: string, updatedFields: Partial<Task>) => void

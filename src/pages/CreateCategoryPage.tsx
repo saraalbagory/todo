@@ -22,7 +22,7 @@ export default function CategoryForm() {
     
     addCategory({ 
       id: crypto.randomUUID(), 
-      name: name.trim() 
+      name: name.trim().toUpperCase() 
     });
 
     setName("");

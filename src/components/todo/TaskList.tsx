@@ -1,12 +1,20 @@
-import { Link } from '@tanstack/react-router';
+
 import type { Task } from '../../types/task';
+import TaskCard from './TaskCard';
+import { useStore } from '../../store/store';
 
 const TaskList = ({ tasks }: { tasks: Task[] }) => {
+    const { toggleTaskCompletion} = useStore();
     return (
         <>
         {/* This is just a placeholder. this will be replaced by task Card later. */}
             {tasks.map((task: Task) => {
-                return <Link to="/$todoId" params={{todoId:task.id} }key={task.id}>{task.title}</Link>
+                return <TaskCard key={task.id} param={{
+                    task: task,
+                    categoryName: '',
+                    toggleTaskCompletion: toggleTaskCompletion,
+                    
+                }} ></TaskCard>
             })}
         </>
     );
