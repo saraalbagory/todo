@@ -41,7 +41,7 @@ export default function CategoriesPage() {
         <Link to="/categories/newCategory" className='mt-6 sm:mt-8'> 
            <button className='add-button  text-white px-4 sm:px-6 py-2 rounded-4xl font-medium transition-colors'>
               + New Category
-           </button>
+           </button >
         </Link>
         </div>
 

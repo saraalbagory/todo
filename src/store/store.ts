@@ -7,8 +7,10 @@ type StoreState = {
 
     categories: Category[],
     todos:Task[],
+    theme: 'light' | 'dark' ,
 
 
+    toggleTheme: () => void,
     // Category Actions
     addCategory: (category: Category) => void
     updateCategory: (id: string, name: string) => void
@@ -34,6 +36,10 @@ export const useStore = create<StoreState>()(
                
             ],
             todos:[],
+            toggleTheme: () => set((state) => ({
+                theme: state.theme === 'light' ? 'dark' : 'light'
+            })),
+            theme: (localStorage.getItem('todo-app-storage-theme') as 'light' | 'dark') || 'light',
 
             addCategory: (category) => set((state) => ({
                 categories: [...state.categories, category]
@@ -78,7 +84,7 @@ export const useStore = create<StoreState>()(
 
         }),
         {
-            name: 'todo-app-storage', // Key in localStorage
+            name: 'todo-app-storage', 
         }
     )
 )
