@@ -46,12 +46,12 @@ export default function TaskForm() {
     return (
         <form
             onSubmit={handleSubmit}
-            className="space-y-4 m:auto max-w-md p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md border border-gray-200 dark:border-gray-700"
+            className="space-y-4 m:auto max-w-md p-6 "
         >
-            <h2 className="text-xl font-bold mb-4 dark:text-white">New Task</h2>
+            <h2 className="text-xl font-bold mb-4">New Task</h2>
 
             <div>
-                <label htmlFor="task-title" className="block text-sm font-medium text-gray-700 dark:text-gray-200">
+                <label htmlFor="task-title" className="block text-sm font-medium">
                     Title <span className="text-red-500">*</span>
                 </label>
                 <input
@@ -62,17 +62,12 @@ export default function TaskForm() {
                         if (error) setError("");
                     }}
                     placeholder="What needs to be done?"
-                    className={`mt-1 w-full rounded-md border px-3 py-2
-                     bg-gray-50 dark:bg-gray-900 
-                     text-gray-900 dark:text-gray-100
-                     focus:outline-none focus:ring-2 focus:ring-blue-500
-                     ${error && !title ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'}`}
                 />
             </div>
 
 
             <div>
-                <label htmlFor="task-desc" className="block text-sm font-medium text-gray-700 dark:text-gray-200">
+                <label htmlFor="task-desc" className="block text-sm font-medium">
                     Description
                 </label>
                 <textarea
@@ -81,15 +76,12 @@ export default function TaskForm() {
                     onChange={(e) => setDescription(e.target.value)}
                     placeholder="Add details..."
                     rows={3}
-                    className="mt-1 w-full rounded-md border border-gray-300 dark:border-gray-600
-                     bg-gray-50 dark:bg-gray-900 
-                     text-gray-900 dark:text-gray-100 px-3 py-2
-                     focus:outline-none focus:ring-2 focus:ring-blue-500"
+                 
                 />
             </div>
 
             <div>
-                <label htmlFor="task-category" className="block text-sm font-medium text-gray-700 dark:text-gray-200">
+                <label htmlFor="task-category" className="block text-sm font-medium">
                     Category <span className="text-red-500">*</span>
                 </label>
 
@@ -102,10 +94,7 @@ export default function TaskForm() {
                         id="task-category"
                         value={categoryId}
                         onChange={(e) => setCategoryId(e.target.value)}
-                        className="mt-1 w-full rounded-md border border-gray-300 dark:border-gray-600
-                       bg-gray-50 dark:bg-gray-900 
-                       text-gray-900 dark:text-gray-100 px-3 py-2
-                       focus:outline-none focus:ring-2 focus:ring-blue-500"
+                       
                     >
                         {categories.map((cat) => (
                             <option key={cat.id} value={cat.id}>
@@ -120,9 +109,7 @@ export default function TaskForm() {
             <button
                 type="submit"
                 disabled={!title.trim() || categories.length === 0}
-                className="w-full rounded-md bg-blue-600 px-4 py-2 text-white font-medium
-                   hover:bg-blue-700 transition-colors
-                   disabled:opacity-50 disabled:cursor-not-allowed"
+                
             >
                 Create Task
             </button>
