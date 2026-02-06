@@ -12,7 +12,7 @@ declare module '@tanstack/react-router' {
     router: typeof router
   }
 }
-
+//TODO :MANGE THE UI WHEN THE LISTS. ARE EMPTY
 
 function App() {
   

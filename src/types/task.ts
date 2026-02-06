@@ -4,5 +4,6 @@ interface Task{
     completed: boolean;
     categoryId: string;
     description?: string;
+    doneAt?: Date;
 }
 export type { Task };

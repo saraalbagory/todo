@@ -16,6 +16,7 @@ import { Route as TodoIdRouteImport } from './routes/$todoId'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as CategoriesIndexRouteImport } from './routes/categories/index'
 import { Route as CategoriesNewCategoryRouteImport } from './routes/categories/newCategory'
+import { Route as CategoriesEditRouteImport } from './routes/categories/edit'
 import { Route as CategoriesCategoryIdRouteImport } from './routes/categories/$categoryId'
 
 const SettingsRoute = SettingsRouteImport.update({
@@ -53,6 +54,11 @@ const CategoriesNewCategoryRoute = CategoriesNewCategoryRouteImport.update({
   path: '/categories/newCategory',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CategoriesEditRoute = CategoriesEditRouteImport.update({
+  id: '/categories/edit',
+  path: '/categories/edit',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CategoriesCategoryIdRoute = CategoriesCategoryIdRouteImport.update({
   id: '/categories/$categoryId',
   path: '/categories/$categoryId',
@@ -66,6 +72,7 @@ export interface FileRoutesByFullPath {
   '/profile': typeof ProfileRoute
   '/settings': typeof SettingsRoute
   '/categories/$categoryId': typeof CategoriesCategoryIdRoute
+  '/categories/edit': typeof CategoriesEditRoute
   '/categories/newCategory': typeof CategoriesNewCategoryRoute
   '/categories/': typeof CategoriesIndexRoute
 }
@@ -76,6 +83,7 @@ export interface FileRoutesByTo {
   '/profile': typeof ProfileRoute
   '/settings': typeof SettingsRoute
   '/categories/$categoryId': typeof CategoriesCategoryIdRoute
+  '/categories/edit': typeof CategoriesEditRoute
   '/categories/newCategory': typeof CategoriesNewCategoryRoute
   '/categories': typeof CategoriesIndexRoute
 }
@@ -87,6 +95,7 @@ export interface FileRoutesById {
   '/profile': typeof ProfileRoute
   '/settings': typeof SettingsRoute
   '/categories/$categoryId': typeof CategoriesCategoryIdRoute
+  '/categories/edit': typeof CategoriesEditRoute
   '/categories/newCategory': typeof CategoriesNewCategoryRoute
   '/categories/': typeof CategoriesIndexRoute
 }
@@ -99,6 +108,7 @@ export interface FileRouteTypes {
     | '/profile'
     | '/settings'
     | '/categories/$categoryId'
+    | '/categories/edit'
     | '/categories/newCategory'
     | '/categories/'
   fileRoutesByTo: FileRoutesByTo
@@ -109,6 +119,7 @@ export interface FileRouteTypes {
     | '/profile'
     | '/settings'
     | '/categories/$categoryId'
+    | '/categories/edit'
     | '/categories/newCategory'
     | '/categories'
   id:
@@ -119,6 +130,7 @@ export interface FileRouteTypes {
     | '/profile'
     | '/settings'
     | '/categories/$categoryId'
+    | '/categories/edit'
     | '/categories/newCategory'
     | '/categories/'
   fileRoutesById: FileRoutesById
@@ -130,6 +142,7 @@ export interface RootRouteChildren {
   ProfileRoute: typeof ProfileRoute
   SettingsRoute: typeof SettingsRoute
   CategoriesCategoryIdRoute: typeof CategoriesCategoryIdRoute
+  CategoriesEditRoute: typeof CategoriesEditRoute
   CategoriesNewCategoryRoute: typeof CategoriesNewCategoryRoute
   CategoriesIndexRoute: typeof CategoriesIndexRoute
 }
@@ -185,6 +198,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CategoriesNewCategoryRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/categories/edit': {
+      id: '/categories/edit'
+      path: '/categories/edit'
+      fullPath: '/categories/edit'
+      preLoaderRoute: typeof CategoriesEditRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/categories/$categoryId': {
       id: '/categories/$categoryId'
       path: '/categories/$categoryId'
@@ -202,6 +222,7 @@ const rootRouteChildren: RootRouteChildren = {
   ProfileRoute: ProfileRoute,
   SettingsRoute: SettingsRoute,
   CategoriesCategoryIdRoute: CategoriesCategoryIdRoute,
+  CategoriesEditRoute: CategoriesEditRoute,
   CategoriesNewCategoryRoute: CategoriesNewCategoryRoute,
   CategoriesIndexRoute: CategoriesIndexRoute,
 }
