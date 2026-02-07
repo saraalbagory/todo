@@ -37,6 +37,7 @@ export default function TaskForm() {
         });
 
 
+        //TODO: add function to clear form after submission
         setTitle("");
         setDescription("");
         setError("");

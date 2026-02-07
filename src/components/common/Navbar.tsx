@@ -14,7 +14,8 @@ function Navbar() {
             ? 'text-2xl bg-blue-600 dark:bg-blue-700 text-white' 
             : 'text-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
         }`}>
-          Home
+          {/* TODO: import constant for path names ex: PATHS.HOME */}
+          Home 
         </Link>
         </div>
         <div>
