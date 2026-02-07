@@ -107,6 +107,7 @@ const CategoryForm=()=>{
 
   return(
     <form action={formAction} ref={formRef} className="space-y-4 m:auto max-w-md p-4 bg-gray-100 dark:bg-gray-700 rounded">
+       <h2 className="text-xl font-bold mb-4">New Category</h2>
       <div>
         <label htmlFor="categoty-name">
           Category Name <span className="text-red-500">*</span>
