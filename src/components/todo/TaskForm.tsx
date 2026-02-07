@@ -1,12 +1,22 @@
 import { useActionState, useEffect, useRef } from "react";
-import { addTaskAction } from "../../helperFunctions/formActions/ToDoFormActions";
+import { addTaskAction, editTaskAction } from "../../helperFunctions/formActions/ToDoFormActions";
 import { useStore } from "../../store/store";
 import toast from "react-hot-toast";
+import type { Task } from "../../types/task";
+import { useRouter } from "@tanstack/react-router";
 
-export default function TaskForm() {
+interface TaskFormProps {
+    task?: Task | null;
+    
+}
+
+export default function TaskForm({ task }: TaskFormProps) {
+
+    const actionFunction = task ? editTaskAction : addTaskAction;
+    const router = useRouter()
 
     const { categories } = useStore();
-    const [state, formAction] = useActionState(addTaskAction, { success: false, formErrorType: { title: false, category: false }, message: "" });
+    const [state, formAction] = useActionState(actionFunction, { success: false, formErrorType: { title: false, category: false }, message: "" });
     const formRef = useRef<HTMLFormElement>(null);
 
     useEffect(() => {
@@ -14,10 +24,12 @@ export default function TaskForm() {
             formRef.current?.reset();
             toast.success(state.message);
         }
-    }, [state.success])
+    }, [state.message, state.success])
     return (
         <form ref={formRef} action={formAction} className=" flex flex-col justify-center space-y-4 m:auto max-w-md p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md border border-gray-200 dark:border-gray-700">
             <h2 className="text-xl font-bold mb-4 dark:text-white">New Task</h2>
+            {task && <input type="hidden" name="id" value={task?.id} />}
+             {task && <input type="hidden" name="completed" value={task ? String(task.completed) : "false"} />}
             <div>
                 <label htmlFor="todo-title" className="block text-sm font-medium text-gray-700 dark:text-gray-200">
                     Title <span className="text-red-500">*</span>
@@ -25,10 +37,10 @@ export default function TaskForm() {
                 <input
                     id="todo-title"
                     name="title"
+                    defaultValue={task?.title || ""}
                     placeholder="what needs to be done?"
                     className={`mt-1 w-full rounded-md border px-3 py-2
-                    bg-gray-50 dark:bg-gray-900 
-                     bg-white dark:bg-gray-800
+                      bg-white dark:bg-gray-900
                      focus:outline-none focus:ring-2 focus:ring-blue-500
                      ${!state.success && state.message && state.formErrorType.title ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'}`} />
                 {!state.success && state.message && state.formErrorType.title && <p> {state.message}</p>}
@@ -41,6 +53,7 @@ export default function TaskForm() {
                 <textarea
                     id="task-desc"
                     name="description"
+                    defaultValue={task?.description || ""}
                     placeholder="Add details..."
                     rows={4}
                     className="mt-1 w-full rounded-md border border-gray-300 dark:border-gray-600
@@ -59,6 +72,7 @@ export default function TaskForm() {
                         <select
                             id="task-category"
                             name="categoryId"
+                            defaultValue={task?.categoryId}
                             className="mt-1 w-full rounded-md border border-gray-300 dark:border-gray-600
                             bg-gray-50 dark:bg-gray-900 
                             text-gray-900 dark:text-gray-100 px-3 py-2
@@ -75,10 +89,24 @@ export default function TaskForm() {
                     <p className="p-2 bg-red-100 border border-red-400 text-red-700 rounded text-sm">{state.message}</p>
                 )}
             </div>
-            <button type="submit" className=" rounded-md bg-blue-600 px-4 py-2 text-white font-medium
-             hover:bg-gray-500 dark:hover:bg-gray-700 transition-colors">
-                Create Task
-            </button>
+            <div className="flex gap-2">
+                <button
+                    type="submit"
+
+                    className="flex-1 rounded-md bg-blue-600 px-4 py-2 text-white font-medium
+             hover:bg-blue-700 transition-colors
+             disabled:opacity-50 disabled:cursor-not-allowed"
+                >Save
+                </button>
+                <button
+                    type="button"
+                    onClick={() => router.history.back()}
+                    className="flex-1 rounded-md bg-gray-400 dark:bg-gray-600 px-4 py-2 text-white font-medium
+             hover:bg-gray-500 dark:hover:bg-gray-700 transition-colors"
+                >
+                    Done
+                </button>
+            </div>
         </form>
     )
 

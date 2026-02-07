@@ -15,6 +15,7 @@ type StoreState = {
     addCategory: (category: Category) => void
     updateCategory: (id: string, name: string) => void
     findCategory: (name: string) => string
+    
     deleteCategory: (id: string) => void
 
 
@@ -26,7 +27,7 @@ type StoreState = {
 
 
 }
-//TODO: check if the category exist before adding it
+
 
 export const useStore = create<StoreState>()(
     persist(
@@ -78,6 +79,7 @@ export const useStore = create<StoreState>()(
             deleteTask: (id) => set((state) => ({
                 todos: state.todos.filter((t) => t.id !== id)
             })),
+           
             toggleTaskCompletion: (id) => set((state) => ({
                 todos: state.todos.map((t) => (t.id === id ? { ...t, completed: !t.completed } : t))
             })),

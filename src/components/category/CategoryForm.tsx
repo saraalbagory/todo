@@ -102,7 +102,7 @@ const CategoryForm=()=>{
       formRef.current?.reset();
       toast.success(state.message)
     }
-  },[state.success])
+  },[state.message, state.success])
 
 
   return(

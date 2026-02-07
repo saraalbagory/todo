@@ -12,12 +12,13 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as AddTaskRouteImport } from './routes/addTask'
-import { Route as TodoIdRouteImport } from './routes/$todoId'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as CategoriesIndexRouteImport } from './routes/categories/index'
+import { Route as TodoIdIndexRouteImport } from './routes/$todoId/index'
 import { Route as CategoriesNewCategoryRouteImport } from './routes/categories/newCategory'
-import { Route as CategoriesEditRouteImport } from './routes/categories/edit'
-import { Route as CategoriesCategoryIdRouteImport } from './routes/categories/$categoryId'
+import { Route as TodoIdEditRouteImport } from './routes/$todoId/edit'
+import { Route as CategoriesCategoryIdIndexRouteImport } from './routes/categories/$categoryId/index'
+import { Route as CategoriesCategoryIdEditRouteImport } from './routes/categories/$categoryId/edit'
 
 const SettingsRoute = SettingsRouteImport.update({
   id: '/settings',
@@ -34,11 +35,6 @@ const AddTaskRoute = AddTaskRouteImport.update({
   path: '/addTask',
   getParentRoute: () => rootRouteImport,
 } as any)
-const TodoIdRoute = TodoIdRouteImport.update({
-  id: '/$todoId',
-  path: '/$todoId',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -49,102 +45,120 @@ const CategoriesIndexRoute = CategoriesIndexRouteImport.update({
   path: '/categories/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TodoIdIndexRoute = TodoIdIndexRouteImport.update({
+  id: '/$todoId/',
+  path: '/$todoId/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CategoriesNewCategoryRoute = CategoriesNewCategoryRouteImport.update({
   id: '/categories/newCategory',
   path: '/categories/newCategory',
   getParentRoute: () => rootRouteImport,
 } as any)
-const CategoriesEditRoute = CategoriesEditRouteImport.update({
-  id: '/categories/edit',
-  path: '/categories/edit',
+const TodoIdEditRoute = TodoIdEditRouteImport.update({
+  id: '/$todoId/edit',
+  path: '/$todoId/edit',
   getParentRoute: () => rootRouteImport,
 } as any)
-const CategoriesCategoryIdRoute = CategoriesCategoryIdRouteImport.update({
-  id: '/categories/$categoryId',
-  path: '/categories/$categoryId',
-  getParentRoute: () => rootRouteImport,
-} as any)
+const CategoriesCategoryIdIndexRoute =
+  CategoriesCategoryIdIndexRouteImport.update({
+    id: '/',
+    path: '/',
+    getParentRoute: () => CategoriesCategoryIdRoute,
+  } as any)
+const CategoriesCategoryIdEditRoute =
+  CategoriesCategoryIdEditRouteImport.update({
+    id: '/categories/$categoryId/edit',
+    path: '/categories/$categoryId/edit',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/$todoId': typeof TodoIdRoute
   '/addTask': typeof AddTaskRoute
   '/profile': typeof ProfileRoute
   '/settings': typeof SettingsRoute
-  '/categories/$categoryId': typeof CategoriesCategoryIdRoute
-  '/categories/edit': typeof CategoriesEditRoute
+  '/$todoId/edit': typeof TodoIdEditRoute
   '/categories/newCategory': typeof CategoriesNewCategoryRoute
+  '/$todoId/': typeof TodoIdIndexRoute
   '/categories/': typeof CategoriesIndexRoute
+  '/categories/$categoryId/edit': typeof CategoriesCategoryIdEditRoute
+  '/categories/$categoryId/': typeof CategoriesCategoryIdIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/$todoId': typeof TodoIdRoute
   '/addTask': typeof AddTaskRoute
   '/profile': typeof ProfileRoute
   '/settings': typeof SettingsRoute
-  '/categories/$categoryId': typeof CategoriesCategoryIdRoute
-  '/categories/edit': typeof CategoriesEditRoute
+  '/$todoId/edit': typeof TodoIdEditRoute
   '/categories/newCategory': typeof CategoriesNewCategoryRoute
+  '/$todoId': typeof TodoIdIndexRoute
   '/categories': typeof CategoriesIndexRoute
+  '/categories/$categoryId/edit': typeof CategoriesCategoryIdEditRoute
+  '/categories/$categoryId': typeof CategoriesCategoryIdIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/$todoId': typeof TodoIdRoute
   '/addTask': typeof AddTaskRoute
   '/profile': typeof ProfileRoute
   '/settings': typeof SettingsRoute
-  '/categories/$categoryId': typeof CategoriesCategoryIdRoute
-  '/categories/edit': typeof CategoriesEditRoute
+  '/$todoId/edit': typeof TodoIdEditRoute
   '/categories/newCategory': typeof CategoriesNewCategoryRoute
+  '/$todoId/': typeof TodoIdIndexRoute
   '/categories/': typeof CategoriesIndexRoute
+  '/categories/$categoryId/edit': typeof CategoriesCategoryIdEditRoute
+  '/categories/$categoryId/': typeof CategoriesCategoryIdIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
-    | '/$todoId'
     | '/addTask'
     | '/profile'
     | '/settings'
-    | '/categories/$categoryId'
-    | '/categories/edit'
+    | '/$todoId/edit'
     | '/categories/newCategory'
+    | '/$todoId/'
     | '/categories/'
+    | '/categories/$categoryId/edit'
+    | '/categories/$categoryId/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/$todoId'
     | '/addTask'
     | '/profile'
     | '/settings'
-    | '/categories/$categoryId'
-    | '/categories/edit'
+    | '/$todoId/edit'
     | '/categories/newCategory'
+    | '/$todoId'
     | '/categories'
+    | '/categories/$categoryId/edit'
+    | '/categories/$categoryId'
   id:
     | '__root__'
     | '/'
-    | '/$todoId'
     | '/addTask'
     | '/profile'
     | '/settings'
-    | '/categories/$categoryId'
-    | '/categories/edit'
+    | '/$todoId/edit'
     | '/categories/newCategory'
+    | '/$todoId/'
     | '/categories/'
+    | '/categories/$categoryId/edit'
+    | '/categories/$categoryId/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  TodoIdRoute: typeof TodoIdRoute
   AddTaskRoute: typeof AddTaskRoute
   ProfileRoute: typeof ProfileRoute
   SettingsRoute: typeof SettingsRoute
-  CategoriesCategoryIdRoute: typeof CategoriesCategoryIdRoute
-  CategoriesEditRoute: typeof CategoriesEditRoute
+  TodoIdEditRoute: typeof TodoIdEditRoute
   CategoriesNewCategoryRoute: typeof CategoriesNewCategoryRoute
+  TodoIdIndexRoute: typeof TodoIdIndexRoute
   CategoriesIndexRoute: typeof CategoriesIndexRoute
+  CategoriesCategoryIdEditRoute: typeof CategoriesCategoryIdEditRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -170,13 +184,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AddTaskRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/$todoId': {
-      id: '/$todoId'
-      path: '/$todoId'
-      fullPath: '/$todoId'
-      preLoaderRoute: typeof TodoIdRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/': {
       id: '/'
       path: '/'
@@ -191,6 +198,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CategoriesIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/$todoId/': {
+      id: '/$todoId/'
+      path: '/$todoId'
+      fullPath: '/$todoId/'
+      preLoaderRoute: typeof TodoIdIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/categories/newCategory': {
       id: '/categories/newCategory'
       path: '/categories/newCategory'
@@ -198,18 +212,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CategoriesNewCategoryRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/categories/edit': {
-      id: '/categories/edit'
-      path: '/categories/edit'
-      fullPath: '/categories/edit'
-      preLoaderRoute: typeof CategoriesEditRouteImport
+    '/$todoId/edit': {
+      id: '/$todoId/edit'
+      path: '/$todoId/edit'
+      fullPath: '/$todoId/edit'
+      preLoaderRoute: typeof TodoIdEditRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/categories/$categoryId': {
-      id: '/categories/$categoryId'
-      path: '/categories/$categoryId'
-      fullPath: '/categories/$categoryId'
-      preLoaderRoute: typeof CategoriesCategoryIdRouteImport
+    '/categories/$categoryId/': {
+      id: '/categories/$categoryId/'
+      path: '/'
+      fullPath: '/categories/$categoryId/'
+      preLoaderRoute: typeof CategoriesCategoryIdIndexRouteImport
+      parentRoute: typeof CategoriesCategoryIdRoute
+    }
+    '/categories/$categoryId/edit': {
+      id: '/categories/$categoryId/edit'
+      path: '/categories/$categoryId/edit'
+      fullPath: '/categories/$categoryId/edit'
+      preLoaderRoute: typeof CategoriesCategoryIdEditRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -217,14 +238,14 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  TodoIdRoute: TodoIdRoute,
   AddTaskRoute: AddTaskRoute,
   ProfileRoute: ProfileRoute,
   SettingsRoute: SettingsRoute,
-  CategoriesCategoryIdRoute: CategoriesCategoryIdRoute,
-  CategoriesEditRoute: CategoriesEditRoute,
+  TodoIdEditRoute: TodoIdEditRoute,
   CategoriesNewCategoryRoute: CategoriesNewCategoryRoute,
+  TodoIdIndexRoute: TodoIdIndexRoute,
   CategoriesIndexRoute: CategoriesIndexRoute,
+  CategoriesCategoryIdEditRoute: CategoriesCategoryIdEditRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

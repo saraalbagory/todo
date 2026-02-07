@@ -1,8 +1,7 @@
 
 import { useNavigate, Link } from '@tanstack/react-router'
 import { useStore } from '../store/store'
-import { useState } from 'react'
-import EditTaskForm from '../components/todo/EditTaskForm'
+
 
 
 
@@ -12,7 +11,7 @@ interface TodoDetailsPageProps {
 
 
 function TaskDetailPage({ id }: TodoDetailsPageProps) {
-  const [isEditing, setIsEditing] = useState(false)
+ 
   const navigate = useNavigate()
   const taskId = id
 
@@ -34,7 +33,7 @@ function TaskDetailPage({ id }: TodoDetailsPageProps) {
 
 
   return (
-    isEditing ? <div className="max-w-2xl mx-auto p-6 space-y-6"><h1>Edit Task</h1><EditTaskForm task={task} onClose={() => setIsEditing(false)} /></div> :
+    
     <div className="max-w-2xl mx-auto p-6 space-y-6">
       <div className="bg-white dark:bg-gray-800 p-6 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm">
 
@@ -84,9 +83,11 @@ function TaskDetailPage({ id }: TodoDetailsPageProps) {
           >
             Delete
           </button>
-          <button className="text-white bg-blue-600 hover:bg-blue-400 px-3 py-1 rounded" onClick={() => setIsEditing(true)}>
+          
+          <Link to="/$todoId/edit" 
+            params={{ todoId: task.id }}><button className="text-white bg-blue-600 hover:bg-blue-400 px-3 py-1 rounded" >
             Edit
-          </button>
+          </button></Link>
         </div>
       </div>
     </div>)}

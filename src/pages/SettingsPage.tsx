@@ -7,9 +7,8 @@ import { Moon, Sun, Trash2 } from 'lucide-react' // Optional icons
 function SettingsPage() {
   const { theme, toggleTheme, todos, categories } = useStore()
 
-  // Handler to clear localStorage for testing
   const handleReset = () => {
-    if (confirm("DANGER: This will delete ALL data. Are you sure?")) {
+    if (confirm(" This will delete all data. Are you sure?")) {
       localStorage.clear()
       window.location.reload()
     }
@@ -19,7 +18,6 @@ function SettingsPage() {
     <div className="p-6 max-w-lg mx-auto space-y-8">
       <h1 className="text-3xl font-bold dark:text-white">Settings</h1>
 
-      {/* --- SECTION 1: APPEARANCE --- */}
       <section className="bg-white dark:bg-gray-800 rounded-xl p-4 shadow-sm border border-gray-100 dark:border-gray-700">
         <h2 className="text-sm font-semibold text-gray-500 mb-4 uppercase tracking-wider">Appearance</h2>
         
@@ -48,8 +46,7 @@ function SettingsPage() {
           </button>
         </div>
       </section>
-
-      {/* --- SECTION 2: DATA MANAGEMENT --- */}
+ 
       <section className="bg-white dark:bg-gray-800 rounded-xl p-4 shadow-sm border border-gray-100 dark:border-gray-700">
         <h2 className="text-sm font-semibold text-gray-500 mb-4 uppercase tracking-wider">Data</h2>
         
@@ -67,7 +64,7 @@ function SettingsPage() {
 
           <button 
             onClick={handleReset}
-            className="w-full flex items-center justify-center gap-2 text-red-500 bg-red-50 hover:bg-red-100 dark:bg-red-900/20 dark:hover:bg-red-900/40 p-3 rounded-lg transition-colors font-medium"
+            className="delete-button"
           >
             <Trash2 size={18} />
             Reset All Data

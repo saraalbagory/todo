@@ -12,11 +12,16 @@
 
 @layer components {
   .delete-button {
-    @apply text-white bg-red-600 dark:bg-red-700 hover:bg-red-700 dark:hover:bg-red-800 px-3 py-1 rounded transition-colors duration-300;
+    @apply w-full flex items-center justify-center gap-2 text-red-500 bg-red-50 hover:bg-red-100 dark:bg-red-900/20 dark:hover:bg-red-900/40 p-3 rounded-lg transition-colors font-medium;
   }
   
   .add-button {
     @apply fixed bottom-6 right-6 bg-blue-600 dark:bg-blue-700 text-white p-4 rounded-full shadow-lg hover:bg-blue-700 dark:hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 transition-colors duration-300;
+  }
+
+  .edit-button
+  {
+    @apply w-full flex items-center justify-center gap-2 text-green-500 bg-green-50 hover:bg-green-100 dark:bg-green-900/20 dark:hover:bg-green-900/40 p-3 rounded-lg transition-colors font-medium;
   }
   
   .card-title {
