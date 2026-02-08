@@ -83,11 +83,13 @@ function TaskDetailPage({ id }: TodoDetailsPageProps) {
           >
             Delete
           </button>
-          
+          <div className='flex  gap-2 '>
           <Link to="/$todoId/edit" 
             params={{ todoId: task.id }}><button className="text-white bg-blue-600 hover:bg-blue-400 px-3 py-1 rounded" >
-            Edit
+            Edit 
+            {/* <Edit2 size={18}></Edit2> */}
           </button></Link>
+          </div>
         </div>
       </div>
     </div>)}

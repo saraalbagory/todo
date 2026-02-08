@@ -7,7 +7,9 @@ const HomePage = () => {
     const { todos } = useStore();
 
 
-    return (<><h1 className="text-3xl font-bold text-center mt-10">Welcome to the Todo App</h1>
+    return (
+    <>
+        <h1 className="text-3xl font-bold text-center mt-10">Welcome to the Todo App</h1>
         <p className="text-center mt-4 text-gray-600 dark:text-gray-300">
             Manage your tasks efficiently and stay organized!
         </p>

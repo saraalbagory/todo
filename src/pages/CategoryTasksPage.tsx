@@ -7,7 +7,7 @@ interface CategoryTaskProps {
 }
 
 const CategoryTasksPage=({categoryId}:CategoryTaskProps)=>{
-   //fetch the category , this logic isnt suppose to be here 
+   // TODO :fetch the category , this logic isnt suppose to be here (MAKE IT A HELPER FUNCTION)
    const {categories,todos} = useStore();
    const category = categories.find((c) => c.id === categoryId);
    const categoryTasks = todos.filter((t) => t.categoryId === categoryId);

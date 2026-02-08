@@ -18,11 +18,10 @@ const TaskCard =({param}:{param:TaskCardProps})=>{
   
      
 
-      {/* MAIN CONTENT */}
+    
       <div className="bg-white dark:bg-gray-800 p-6 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm">
         
         <div className="flex items-start gap-4">
-            {/* CHECKBOX (Toggle Status) */}
             <input 
                 type="checkbox"
                 checked={task.completed}
@@ -37,7 +36,7 @@ const TaskCard =({param}:{param:TaskCardProps})=>{
                         {task.title}
                     </h1>
                     
-                    {/* Put icons for category  or color to represent the category*/}
+                    {/* TODO:Put icons for category  or color to represent the category*/}
                     <div className="flex gap-2">
                         <span className="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full font-medium">
                              WORK

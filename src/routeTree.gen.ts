@@ -62,9 +62,9 @@ const TodoIdEditRoute = TodoIdEditRouteImport.update({
 } as any)
 const CategoriesCategoryIdIndexRoute =
   CategoriesCategoryIdIndexRouteImport.update({
-    id: '/',
-    path: '/',
-    getParentRoute: () => CategoriesCategoryIdRoute,
+    id: '/categories/$categoryId/',
+    path: '/categories/$categoryId/',
+    getParentRoute: () => rootRouteImport,
   } as any)
 const CategoriesCategoryIdEditRoute =
   CategoriesCategoryIdEditRouteImport.update({
@@ -159,6 +159,7 @@ export interface RootRouteChildren {
   TodoIdIndexRoute: typeof TodoIdIndexRoute
   CategoriesIndexRoute: typeof CategoriesIndexRoute
   CategoriesCategoryIdEditRoute: typeof CategoriesCategoryIdEditRoute
+  CategoriesCategoryIdIndexRoute: typeof CategoriesCategoryIdIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -221,10 +222,10 @@ declare module '@tanstack/react-router' {
     }
     '/categories/$categoryId/': {
       id: '/categories/$categoryId/'
-      path: '/'
+      path: '/categories/$categoryId'
       fullPath: '/categories/$categoryId/'
       preLoaderRoute: typeof CategoriesCategoryIdIndexRouteImport
-      parentRoute: typeof CategoriesCategoryIdRoute
+      parentRoute: typeof rootRouteImport
     }
     '/categories/$categoryId/edit': {
       id: '/categories/$categoryId/edit'
@@ -246,6 +247,7 @@ const rootRouteChildren: RootRouteChildren = {
   TodoIdIndexRoute: TodoIdIndexRoute,
   CategoriesIndexRoute: CategoriesIndexRoute,
   CategoriesCategoryIdEditRoute: CategoriesCategoryIdEditRoute,
+  CategoriesCategoryIdIndexRoute: CategoriesCategoryIdIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
