@@ -1,0 +1,23 @@
+steps:
+    - name: 'gcr.io/cloud-builders/docker'
+      args:
+          [
+              'build',
+              '--build-arg',
+              'BRANCH_NAME=${BRANCH_NAME}',
+              '--build-arg',
+              'COMMIT_SHA=${COMMIT_SHA}',
+              '-t',
+              'gcr.io/${PROJECT_ID}/${_REPO}:${COMMIT_SHA}',
+              '.',
+          ]
+
+    - name: 'gcr.io/cloud-builders/docker'
+      args: ['create', '--name', 'img', 'gcr.io/${PROJECT_ID}/${_REPO}:${COMMIT_SHA}']
+
+images: ['gcr.io/$PROJECT_ID/${_REPO}:${COMMIT_SHA}']
+
+options:
+    dynamic_substitutions: true
+
+timeout: 2040s
